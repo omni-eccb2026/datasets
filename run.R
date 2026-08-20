@@ -2,12 +2,7 @@
 
 library(argparse)
 library(zellkonverter)
-library(TENxBrainData)
-library(SingleCellMultiModal)
 library(SingleCellExperiment)
-library(DropletUtils)
-library(GEOquery)
-library(stringr)
 
 parser <- ArgumentParser(description = "Benchmarking entrypoint")
 
@@ -76,6 +71,9 @@ if (args$dataset_name == "sc-mix") {
     percent_mt_max = 10
   )
 } else if (args$dataset_name == "be1") {
+  library(DropletUtils)
+  library(GEOquery)
+  library(stringr)
   # download GEO files for be1
   gse_id <- "GSE243665"
   getGEOSuppFiles(
@@ -133,6 +131,7 @@ if (args$dataset_name == "sc-mix") {
     percent_mt_max = 5
   )
 } else if (args$dataset_name == "cb") {
+  library(SingleCellMultiModal)
   # load Cord blood CITEseq data
   sce <- CITEseq(
     DataType = "cord_blood", modes = "*", dry.run = FALSE, version = "1.0.0",
@@ -155,6 +154,7 @@ if (args$dataset_name == "sc-mix") {
   )
 } else if (args$dataset_name == "1.3m") {
   # fetch 10x 1.3M data
+  library(TENxBrainData)
   sce <- TENxBrainData()
   rownames(sce) <- rowData(sce)$Symbol
 
