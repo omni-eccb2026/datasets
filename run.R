@@ -51,7 +51,8 @@ make_qc_df <- function(
 if (args$dataset_name == "sc-mix") {
   # download processed scMixology dataset
   options(timeout=180)
-  url <- "https://github.com/LuyiTian/sc_mixology/raw/refs/heads/master/data/sincell_with_class_5cl.RData"
+  #url <- "https://github.com/LuyiTian/sc_mixology/raw/refs/heads/master/data/sincell_with_class_5cl.RData"
+  url <- "https://omnibenchmark.mls.uzh.ch/datasets/sc-mix/sincell_with_class_5cl.RData"
   bn <- basename(url)
   raw_path <- file.path(args$output_dir, bn)
   if (!file.exists(raw_path)) {
